@@ -7,7 +7,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import BotCommand, BotCommandScopeDefault
 from loguru import logger
 from app.config import settings
-
+from app.dao.database_middleware import DatabaseMiddlewareWithoutCommit, DatabaseMiddlewareWithCommit
 
 bot = Bot(token=settings.BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher(storage=MemoryStorage())
@@ -20,6 +20,8 @@ async def set_commands():
 
 # Функция, которая выполнится когда бот запустится
 async def start_bot():
+    dp.update.middleware.register(DatabaseMiddlewareWithoutCommit())
+    dp.update.middleware.register(DatabaseMiddlewareWithCommit())
     await set_commands()
     logger.info("Бот успешно запущен.")
 
