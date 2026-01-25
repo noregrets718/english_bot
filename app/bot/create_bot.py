@@ -8,6 +8,8 @@ from aiogram.types import BotCommand, BotCommandScopeDefault
 from loguru import logger
 from app.config import settings
 from app.dao.database_middleware import DatabaseMiddlewareWithoutCommit, DatabaseMiddlewareWithCommit
+from app.bot.user.router import router as user_router
+from app.bot.word.router import router as word_router
 
 bot = Bot(token=settings.BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher(storage=MemoryStorage())
@@ -22,7 +24,10 @@ async def set_commands():
 async def start_bot():
     dp.update.middleware.register(DatabaseMiddlewareWithoutCommit())
     dp.update.middleware.register(DatabaseMiddlewareWithCommit())
+    dp.include_router(user_router)
+    dp.include_router(word_router)
     await set_commands()
+
     logger.info("Бот успешно запущен.")
 
 

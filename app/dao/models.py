@@ -61,4 +61,11 @@ class Word(Base):
         comment="Перевод на родной язык"
     )
 
+    # Сгенерированные предложения (raw text от LLM)
+    sentences_text: Mapped[str | None] = mapped_column(
+        String(4000),
+        nullable=True,
+        comment="Примеры предложений от LLM"
+    )
+
     user: Mapped["User"] = relationship("User", back_populates="words")

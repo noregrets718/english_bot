@@ -5,8 +5,7 @@ from aiogram.types import Message, CallbackQuery
 from aiogram.dispatcher.router import Router
 from pydantic import create_model
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.bot.booking.state import BookingState
-from app.bot.user.kbs import main_user_kb, user_booking_kb, cancel_book_kb
+from app.bot.user.kbs import main_user_kb
 from app.bot.user.schemas import SUser
 from app.dao.dao import UserDAO
 
