@@ -13,8 +13,8 @@ class Settings(BaseSettings):
     # PostgreSQL настройки
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
-    POSTGRES_HOST: str = "localhost"
-    POSTGRES_PORT: int = 5432
+    POSTGRES_HOST: str
+    POSTGRES_PORT: int
     POSTGRES_DB: str
 
     BASE_URL: str
