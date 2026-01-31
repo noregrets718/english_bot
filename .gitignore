@@ -9,5 +9,21 @@ wheels/
 # Virtual environments
 .venv
 
+# Environment
 .env
+.env.*
+!.env.example
 
+# Logs
+*.log
+app/log.txt
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
